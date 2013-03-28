@@ -67,14 +67,15 @@ while($row = mysql_fetch_array($result))
         </div>
       </div>
     </div>-->
-	<div class="navbar navbar-fixed-bottom">
+	<div class="navbar navbar-inverse navbar-fixed-bottom">
 		<div class="navbar-inner">
 		    <div class="container"> 
+                <div class="row">
 				<ul class="nav">
-                    <form class="navbar-search pull-left">
+                    <form class="span5 navbar-search pull-left offset1">
                     <input type="text" class="search-query" placeholder="Search">
                     </form>
-		        	<a class="brand" href="#">GSocial+</a>
+		        	<a class="span3 brand" href="#">GSocial+</a>
                     <li class="divider-vertical"></li>
                     <li><a rel="tooltip" target="_blank" href="#" title="" data-original-title="Groups">G</a></li>
                     <li class="divider-vertical"></li>
@@ -83,6 +84,7 @@ while($row = mysql_fetch_array($result))
                   <li><a rel="tooltip" target="_blank" href="#" title="" data-original-title="Notifications">N</i></a></li>
                   <li class="divider-vertical"></li>
 				</ul>
+                                    </div>
 			</div>
 		</div>
     </div>
