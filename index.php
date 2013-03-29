@@ -37,6 +37,10 @@
                                 <h1>Log in</h1> 
 								<?php
 								session_start();
+								if (isset($_SESSION['username']))
+								{
+									header( 'Location: profile.php' ) ;
+								}
 								if (isset($_SESSION['regError']))
 								{
 									if ($_SESSION['regError'] == 1)

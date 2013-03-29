@@ -15,6 +15,7 @@ while($row = mysql_fetch_array($result))
 	$_SESSION['my_info'] = $row['about_me'];
 	$_SESSION['my_dept'] = $row['department'];
 	$_SESSION['my_hostel'] = $row['hostel'];
+	$_SESSION['img-user'] = 1;				//Set to 1 if profile pic set. Check in database basically.
 }
 ?>
   <head>
@@ -98,10 +99,10 @@ while($row = mysql_fetch_array($result))
             </div>
 
             <div class="span4">
-			<br><br>
-			<div class="img-polaroid">
-            <img src="images/fdp.jpg">
-			</div>
+				<br><br>
+				<div class="img-polaroid">
+					<img src="images/img-<?php if (isset($_SESSION['img-user'])) echo $myusername; else echo "null"; ?>.jpg">
+				</div>
             </div>
 		</div>
 	    <div class="row">
@@ -121,6 +122,7 @@ while($row = mysql_fetch_array($result))
                   <li><a href="#">Message</a></li>
                   <li><a href="#">Poke</a></li>
                   <li><a href="#">Kill</a></li>
+				  <li><a href="editProfile.php">Edit Profile</a></li>
 				  <li><a href="logout.php">Logout</a></li>
                 </ul>
 			</div>
