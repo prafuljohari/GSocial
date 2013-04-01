@@ -1,15 +1,20 @@
 <head>
 	<title>Edit Profile</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <!--
+	<link href="css/jasny/bootstrap.min.css" rel="stylesheet">
 	<link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/datepicker.css" rel="stylesheet">
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/bootstrap.js"></script>
-    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/jasny/jasny-bootstrap.min.js"></script>
+	<script src="js/jasny/jasny-bootstrap.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>-->
 	<?php
 //Do the PHP processing of variables here only.
 include("db_connect.php"); 
+include ("header.html");
 session_start();
 $myusername = $_SESSION["username"];
 $sql="SELECT * FROM profile WHERE userid='$myusername' ";
@@ -30,7 +35,7 @@ while($row = mysql_fetch_array($result))
 <body>
 <div class="container">
 <div class="hero-unit">
-<form class="form-horizontal" method="post" action="process_edit_profile.php">
+<form class="form-horizontal" method="post" enctype="multipart/form-data" action="process_edit_profile.php">
   <fieldset>
     <legend>Edit profile</legend>
   		<div class="row">
@@ -85,7 +90,7 @@ while($row = mysql_fetch_array($result))
     	<label class="control-label" for="usrHostel">Date of Birth</label>
     	<div class="controls">
 			  <div class="input-append date" id="dp3" data-date="2013-03-28" data-date-format="yyyy-mm-dd">
-				<input name="date" type="text" value="2013-03-28" readonly="">
+				<input name="date" type="text" value="2013-03-28" readonly>
 				<span class="add-on"><i class="icon-calendar"></i></span>
 			  </div>
         </div>
@@ -99,11 +104,20 @@ while($row = mysql_fetch_array($result))
   </div>
   <div class="span3">
 	<div class="control-group">
-    	<label for="usrImage">Display image</label>         
+    	<!--<label for="usrImage">Display image</label>         
 		<div class="img-polaroid">
            	<img src="images/img-null.jpg">
 		</div>
-        <input type="file">
+        <input type="file">-->
+        <div class="fileupload fileupload-new" data-provides="fileupload">
+  			<div class="fileupload-preview thumbnail img-polaroid" style="width: 200px; height: 150px;"></div>
+  <div>
+    <span class="btn btn-file"><span class="fileupload-new">Select image</span><span class="fileupload-exists">Change</span>
+    	<input name="myFile" type="file" />
+      	</span>
+    <a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+  </div>
+</div>
 	</div>
   </div>
 
@@ -172,25 +186,7 @@ while($row = mysql_fetch_array($result))
 <button type="submit" class="btn">Back to profile</button>
 </form>
 </div>
-<div class="navbar navbar-inverse navbar-fixed-bottom">
-		<div class="navbar-inner">
-		    <div class="container"> 
-                <div class="row">
-				<ul class="nav">
-                    <form class="span5 navbar-search pull-left offset1">
-                    <input type="text" class="search-query" placeholder="Search">
-                    </form>
-		        	<a class="span3 brand" href="#">GSocial+</a>
-                    <li class="divider-vertical"></li>
-                    <li><a rel="tooltip" target="_blank" href="#" title="" data-original-title="Groups">G</a></li>
-                    <li class="divider-vertical"></li>
-                  <li><a rel="tooltip" target="_blank" href="#" title="" data-original-title="Messages">M</a></li>
-                  <li class="divider-vertical"></li>
-                  <li><a rel="tooltip" target="_blank" href="#" title="" data-original-title="Notifications">N</i></a></li>
-                  <li class="divider-vertical"></li>
-				</ul>
-                                    </div>
-			</div>
-		</div>
-    </div>
+<?php
+include("navbar.html");
+?>
 </body>
