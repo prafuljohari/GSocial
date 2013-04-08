@@ -1,10 +1,12 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!DOCTYPE html>
 <HTML>
  <HEAD>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta http-equiv="Content-Script-Type" content="text/javascript" />	
-  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <?php
+  include("header.html");
+  ?>
   <TITLE> Comment Form with jQuery & PHP</TITLE>
   <script type="text/javascript" src="js/jquery.js"></script>
 		<script type="text/javascript">
@@ -69,7 +71,11 @@
 		<div class="container">
 		<div class = "hero-unit">
 		<h1><center><?php echo $currentGroup; ?></center></h1>
-        <br>
+		</div>
+		<form id="form" action="displayPost.php" method="post" class="well">
+			<textarea name="content" id="content" cols="30" rows="3" class="input-block-level"></textarea>
+			<input type="submit" id="submit" name="submit" value="Add Post"/>
+		</form>
 		<div id="comment"></div>
 		
 		<!--
@@ -95,12 +101,6 @@
 				</td>
 			</tr>
 		</table>-->	
-		
-		</div>
-		<form id="form" action="displayPost.php" method="post">
-						<textarea name="content" id="content" cols="30" rows="3" class="span12"></textarea> <br />
-						<input type="submit" id="submit" name="submit" value="Add Post"/>
-		</form>
 		</div>
 	</body>
  </HEAD>

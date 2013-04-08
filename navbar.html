@@ -1,20 +1,21 @@
-<div class="navbar navbar-inverse navbar-fixed-bottom">
+<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="navbar-inner">
                 <div class="row">
 				<ul class="nav">
-                    <form class="span10 navbar-search pull-left offset1">
-	                <input type="text" class="input-xlarge search-query offset1" placeholder="Search">
-        	        </form>
+                    <form class="span9 navbar-search pull-left offset1">
+                    <input type="text" class="input-xlarge search-query" id="searchfield" placeholder="Search" autocomplete="off">
+                    </form>
 		        	<a class="span3 brand offset4">GSocial+</a>
-                    <li><a class= "offset3" target="_blank" href="profile.php" title="" data-original-title="Groups"><?php echo $_SESSION['my_fname'];?>  <i class="icon-user icon-white"></i></a></li>
+                    <li><a class= "offset2" href="profile.php" title="" data-original-title="Groups" data-placement="bottom"><?php echo $_SESSION['my_fname'];?>  <i class="icon-user icon-white"> </i></a></li>
                     <li class="divider-vertical"></li>
-                    <li><a rel="tooltip" target="_blank" href="groups.php" title="" data-original-title="Groups"><i class="icon-book icon-white"></i></a></li>
+                    <li><a rel="tooltip" href="groups.php" title="" data-original-title="Groups" data-placement="bottom"><i class="icon-book icon-white"></i></a></li>
                     <li class="divider-vertical"></li>
-                  <li><a rel="tooltip" target="_blank" href="#" title="" data-original-title="Messages"><i class="icon-comment icon-white"></i></a></li>
+                  <li><a rel="tooltip" href="#" title="" data-original-title="Messages" data-placement="bottom"><i class="icon-comment icon-white"></i></a></li>
                   <li class="divider-vertical"></li>
-                  <li><a rel="tooltip" target="_blank" href="#" title="" data-original-title="Notifications"><i class="icon-flag icon-white"></i></i></a></li>
+                  <li><a rel="tooltip" href="#" title="" data-original-title="Notifications" data-placement="bottom"><i class="icon-flag icon-white"></i></i></a></li>
                   <li class="divider-vertical"></li>
 				</ul>
 				</div>
 		</div>
 </div>
+<br><br><br>

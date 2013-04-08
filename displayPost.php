@@ -1,15 +1,14 @@
 <head>
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-</head>
 <?php 
 $selected="groupPosts";
 $TITLE = "Posts";
+include("header.html");
 include("db_connect.php");
 session_start();
 $currentUser = $_SESSION['username'];
 $currentGroup = $_SESSION['currentGroup'];
 ?>
-
+</head>
 <?php	
 	//Was the form submitted?
 	if(isset($_POST['submit'])){
@@ -45,16 +44,21 @@ $currentGroup = $_SESSION['currentGroup'];
 	
 	//Continue looping through all of them
 	while($row = mysql_fetch_array($find)){
-	
+	echo '<form type="hidden" id="form" action="delete.php?id=' . $row['postid'] . '" method="post">';
 	//For each one, echo a list item giving a link to the delete page with it's id.
+	echo '<blockquote>' . $row['file_pointer'] . '
+		<input class="todo_id" name="todo_id" type="hidden" value="' . $row['postid'] . '" />
+		<input class="todo_content" name="todo_content" type="hidden" value="'  . $row['file_pointer'] . '" />
+		<button class="delete close" name="delete" style="width: 20px; height: 20px; float:right">&times</button></blockquote><br>';
+	/*
 	echo '<tr><td valign="middle" width="90%">' . $row['file_pointer'] . ' </td>
 		<td valign="middle" width="10%"><form id="form" action="delete.php?id=' . $row['postid'] . '" method="post">
 		<input class="todo_id" name="todo_id" type="hidden" value="' . $row['postid'] . '" />
 		<input class="todo_content" name="todo_content" type="hidden" value="'  . $row['file_pointer'] . '" />
 		<input type="image" src="images/delete.png" class="delete" name="delete" style="width: 20px; height: 20px;"  />
-		
-		</form>
 		</td></tr>';
+		<input type="image" src="images/delete.png" class="delete add-on" name="delete" style="width: 20px; height: 20px; float:right"  />
+		*/
 	}
 	
 	//End the un-ordered list

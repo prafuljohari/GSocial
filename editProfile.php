@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <head>
 	<title>Edit Profile</title>
 	<!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
@@ -187,6 +188,6 @@ while($row = mysql_fetch_array($result))
 </form>
 </div>
 <?php
-include("navbar.html");
+include("navbar-profile.html");
 ?>
 </body>

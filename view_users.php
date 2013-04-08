@@ -58,18 +58,24 @@ while($row = mysql_fetch_array($result))
          
 	            <ul class="nav nav-list">
                   <center><li class="nav-header">Details</li></center>
-                  <li class="progress-success">Hostel: <?php echo $_SESSION['view_hostel']?></li>
-                  <li><br></li>
-                  <li>Batch: 2014</li>
-                  <li>Webmail id: stud</li>
+					<br>
+					<dl class="dl-horizontal">
+					<dt>Hostel</dt>
+					<dd class="text-center"><?php echo $_SESSION['my_hostel']?></dd>
+					<dt>Batch</dt>
+					<dd class="text-center">2014</dd>
+					<dt>Webmail id</dt>
+					<dd class="text-center">stud</dd>
+					</dl>
                 </ul>
             </div>
         	<div class="span4">
                 <ul class="nav nav-list">
                   <center><li class="nav-header">User Actions</li></center>
-                  <li><a href="#">Message</a></li>
-                  <li><a href="#">Poke</a></li>
-                  <li><a href="#">Kill</a></li>
+				  <br>
+                  <li><a class ="text-center" href="#">Message</a></li>
+                  <li><a class ="text-center" href="#">Poke</a></li>
+                  <li><a class ="text-center" href="#">Kill</a></li>
                 </ul>
 			</div>
     	</div>
