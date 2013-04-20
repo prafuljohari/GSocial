@@ -2,6 +2,8 @@
 
     include ("db_connect.php");
 	session_start();
+	if (!(isset($_POST["email"])) && (isset($_POST["password"])) && (isset($_POST["password_confirm"])))
+		header("Location: index.php");
 	unset($_SESSION['regError']);
 //Input vaildation and the dbase code
 
@@ -31,9 +33,9 @@
 		}
 	  else
 			{
-				$mysqltime = date ("Y-m-d H:i:s", $phptime);
+				//$mysqltime = date ("Y-m-d H:i:s", $phptime);
 				$q = "INSERT INTO `login`"
-					."VALUES ('$userid', '$passw', '$mysqltime')";
+					."VALUES ('$userid', '$passw')";
 				
 				$r = mysql_query($q);
 				  if ( !$r )
@@ -45,5 +47,5 @@
 			}
 	}
 	$_SESSION['username'] = $userid;	
-	header( 'Location: profile.php' ) ;
+	header( 'Location: editprofile.php' ) ;
 ?>

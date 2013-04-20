@@ -1,11 +1,12 @@
 <?php
 session_start();
-		
 include ("db_connect.php");
 mysql_select_db("gsocial");
 if (isset($_SESSION['regError']))
 unset($_SESSION['regError']); 
 
+if (!(isset($_POST['email']) && isset($_POST['password'])))
+header("Location: index.php");
 $myemailid=$_POST['email'];
 $mypassword=$_POST['password']; 
 

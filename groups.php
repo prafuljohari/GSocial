@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <head>
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap-tooltip.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap.js"></script>
+<?php
+include("header.html");
+?>
 </head>
 <body>
 <?php 
@@ -12,14 +10,18 @@ $selected="groups";
 $TITLE = "Groups";
 include("db_connect.php");
 session_start();
+if (isset($_SESSION["username"]))
+$myusername = $_SESSION["username"];
+else
+header("Location: index.php");
 $currentUser = $_SESSION['username'];
 include ("navbar.html");
 ?>
 
 
 <div class="container">
-
-<legend>List of active groups</legend>
+<div class="hero-unit">
+<legend>List of groups for current user</legend></div>
 <?php
 $rel_name='is_in';
 $tbl_name='groups';
@@ -27,7 +29,8 @@ $tbl_name='groups';
 $sql="SELECT B.groupid, B.description from $rel_name AS A JOIN $tbl_name AS B ON A.groupid = B.groupid WHERE A.userid = '$currentUser'";
 $result=mysql_query($sql) or die('Error, query failed : '.mysql_error());
 echo '<div class="well">
-<table id="groupsDescTable" class = "table">
+<table id="groupsDescTable" class = "table table-hover">
+	<thead>
 	<tr>
 		<br>
 		
@@ -36,7 +39,7 @@ echo '<div class="well">
 		
 			<th><center>Description</center></th>
 		
-		</tr>';
+		</tr></thead><tbody>';
 	while($rows=mysql_fetch_array($result)){
 echo '
 	<tr>
@@ -44,8 +47,7 @@ echo '
 	<td><center>'.$rows['description'].'<center></td>
 	</tr>';
 	}
-echo '</table></div>';
-
+echo '</tbody></table></div>';
 ?>
 </div>
 </body>

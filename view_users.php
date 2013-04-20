@@ -4,8 +4,17 @@
 //Do the PHP processing of variables here only.
 include("db_connect.php"); 
 session_start();
+if (isset($_SESSION["username"]))
+$myusername = $_SESSION["username"];
+else
+header("Location: index.php");
 $viewuser = $_GET['user'];
+$_SESSION['viewuser']=$viewuser;
+if ($viewuser == $_SESSION['username'])
+	header("Location: profile.php");
+	
 $sql="SELECT * FROM profile WHERE userid='$viewuser' ";
+
 $result=mysql_query($sql) or die (mysql_error());
 $_SESSION['view'] = 1;
 while($row = mysql_fetch_array($result))
@@ -24,64 +33,57 @@ while($row = mysql_fetch_array($result))
     <title>GSocial+</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap-tooltip.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script type='text/javascript'>
-     $(document).ready(function () {
-     if ($("[rel=tooltip]").length) {
-     $("[rel=tooltip]").tooltip();
-     }
-   });
-  </script>
+    <?php
+	 include ("header.html");
+	?>
   </head>
   <body>
+  <?php
+  	 include ("navbar.html");
+  ?>
+  <br>
   <div class="container">
    		<div class="row">    
-            <div class="span6 hero-unit"> 
+            <div class="span5 hero-unit"> 
                 <!--<br><br>-->
-                <h1><center><?php echo $_SESSION['view_name']?></center></h1>
-                <h4><center><?php echo $_SESSION['view_desig']?></center></h4>
-                <h4><center>Dept. of <?php echo $_SESSION['view_dept']?></center></h4>
+                <h1 class="text-right"><?php echo $_SESSION['view_name']?></center></h1>
+                <h4 class="text-right"><?php echo $_SESSION['view_desig']?></center></h4>
+                <h4 class="text-right">Dept. of <?php echo $_SESSION['view_dept']?></center></h4>
             </div>
 
-            <div class="span4">
-			<br><br>
-			<div class="img-polaroid">
-            <img src="images/img-<?php if (isset($_SESSION['img-user'])) echo $viewuser; else echo "null"; ?>.jpg">
+            <div class="span2">
+				<br>
+				<div class="img-polaroid" style="width: 300px; height: 200px; text-align: center">
+					<img style="max-width: 300px; max-height: 200px; text-align:center;" src="images/img-<?php if (file_exists("images/img-".$viewuser.".jpg")) echo $viewuser; else echo "null"; ?>.jpg">
+				</div>
 			</div>
-            </div>
 		</div>
 	    <div class="row">
-        <div class="span8">                    
+        <div class="span5 offset1">                    
          
 	            <ul class="nav nav-list">
                   <center><li class="nav-header">Details</li></center>
 					<br>
 					<dl class="dl-horizontal">
 					<dt>Hostel</dt>
-					<dd class="text-center"><?php echo $_SESSION['my_hostel']?></dd>
-					<dt>Batch</dt>
-					<dd class="text-center">2014</dd>
+					<dd class="text-center"><?php echo $_SESSION['view_hostel']?></dd>
 					<dt>Webmail id</dt>
-					<dd class="text-center">stud</dd>
+					<dd class="text-center"><?php echo $_SESSION['viewuser']?></dd>
 					</dl>
                 </ul>
             </div>
-        	<div class="span4">
+        	<div class="span2 offset1">
                 <ul class="nav nav-list">
                   <center><li class="nav-header">User Actions</li></center>
 				  <br>
-                  <li><a class ="text-center" href="#">Message</a></li>
-                  <li><a class ="text-center" href="#">Poke</a></li>
-                  <li><a class ="text-center" href="#">Kill</a></li>
+                  <li><a class ="text-center" href="start_personal_conv.php">Message</a></li>
+                  <!--<li><a class ="text-center" href="#">Poke</a></li>
+                  <li><a class ="text-center" href="#">Kill</a></li>-->
                 </ul>
 			</div>
     	</div>
      </div>
 	 <?php
-	 include ("navbar-profile.html");
 	 ?>
   </body>
 </html>

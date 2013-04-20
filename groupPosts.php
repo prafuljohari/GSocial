@@ -25,3 +25,6 @@ echo '
 echo '</table>';
 
 ?>
+<?php
+	 include ("navbar-profile.html");
+	 ?>

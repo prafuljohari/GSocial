@@ -2,18 +2,38 @@
 		<div class="navbar-inner">
                 <div class="row">
 				<ul class="nav">
-                    <form class="span9 navbar-search pull-left offset1">
-                    <input type="text" class="input-xlarge search-query" id="searchfield" placeholder="Search" autocomplete="off">
+					<li>
+					<div class="span6 offset1">
+                    <form class="navbar-search pull-left">
+                    <input type="text" class="search-query" id="searchfield" placeholder="Search" autocomplete="off">
                     </form>
-		        	<a class="span3 brand offset4">GSocial+</a>
-                    <li><a class= "offset2" href="profile.php" title="" data-original-title="Groups" data-placement="bottom"><?php echo $_SESSION['my_fname'];?>  <i class="icon-user icon-white"> </i></a></li>
+					</div>
+					</li>
+					<li>
+		        	<a class="span4 brand offset2">GSocial+</a>
+					</li>
+                    <li><a class= "offset2" href="profile.php" title="" data-original-title="Groups" data-placement="bottom"><?php echo $_SESSION['my_fname'];?> <i class="icon-user icon-white"> </i></a>
+					</li>
                     <li class="divider-vertical"></li>
                     <li><a rel="tooltip" href="groups.php" title="" data-original-title="Groups" data-placement="bottom"><i class="icon-book icon-white"></i></a></li>
                     <li class="divider-vertical"></li>
-                  <li><a rel="tooltip" href="#" title="" data-original-title="Messages" data-placement="bottom"><i class="icon-comment icon-white"></i></a></li>
+                  <li><a rel="tooltip" href="conversations.php" title="" data-original-title="Messages" data-placement="bottom"><i class="icon-comment icon-white"></i></a></li>
                   <li class="divider-vertical"></li>
-                  <li><a rel="tooltip" href="#" title="" data-original-title="Notifications" data-placement="bottom"><i class="icon-flag icon-white"></i></i></a></li>
+                  <li><a rel="tooltip" href="notif.php" title="" data-original-title="Notifications" data-placement="bottom"><i class="icon-flag icon-white"></i></i></a></li>
                   <li class="divider-vertical"></li>
+				  <?php
+					$tempUserid = $_SESSION['username'];
+					$sql = "SELECT * FROM admin WHERE userid = '$tempUserid'";
+					$result = mysql_query($sql) or die (mysql_error());
+					
+					if (mysql_num_rows($result) > 0)
+					{
+				  ?>
+						<li><a rel="tooltip" href="requestForm.php" title="" data-original-title="Requests" data-placement="bottom"><i class="icon-exclamation-sign icon-white"></i></i></a></li>
+						<li class="divider-vertical"></li>
+				  <?php
+					}
+				  ?>
 				</ul>
 				</div>
 		</div>
